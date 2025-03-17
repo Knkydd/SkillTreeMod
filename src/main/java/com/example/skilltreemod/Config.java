@@ -1,7 +1,9 @@
 package com.example.skilltreemod;
 
+import com.example.skilltreemod.client.KeyBindings;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -11,6 +13,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 
 // An example config class. This is not required, but it's a good idea to have one to keep your config organized.
 // Demonstrates how to use Forge's config APIs
@@ -59,5 +62,10 @@ public class Config
         items = ITEM_STRINGS.get().stream()
                 .map(itemName -> ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName)))
                 .collect(Collectors.toSet());
+    }
+
+    @SubscribeEvent
+    public static void onRegisterKeyBindings(RegisterKeyMappingsEvent event) {
+        event.register(KeyBindings.OPEN_GUI_KEY);
     }
 }
