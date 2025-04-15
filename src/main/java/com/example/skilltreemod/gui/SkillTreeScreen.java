@@ -16,7 +16,6 @@ import org.jetbrains.annotations.NotNull;
  */
 public class SkillTreeScreen extends Screen {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(SkillTreeMod.MODID, "textures/gui/background.png");
     public SkillTreeScreen() {
         super(Component.literal("My GUI"));
     }
@@ -38,38 +37,40 @@ public class SkillTreeScreen extends Screen {
                 OpenGuiPacket::handle // Метод для обработки пакета
         );
     }
+
     @Override
     protected void init() {
         // Инициализация кнопок и других элементов GUI
         this.addRenderableWidget(
-                Button.builder(Component.literal("Click Me"), button -> {
-                            // Действие при нажатии на кнопку
-                            System.out.println("Кнопка нажата!");
-                        })
+                Button.builder(Component.literal("X"), button -> {
+                    onClose();
+                })
                         .bounds(
-                                this.width / 2 - 50, // Позиция X
-                                this.height / 2 - 10, // Позиция Y
-                                100, // Ширина
-                                20 // Высота
+                                this.width - 25, // Позиция X
+                                0, // Позиция Y
+                                25, // Ширина
+                                25 // Высота
                         )
                         .build() // Создание кнопки
         );
+        this.addRenderableWidget(
+                Button.builder(Component.literal("?"), button -> {
+                    System.out.println("G");
+                })
+                        .bounds(
+                                this.width - 65,
+                                0,
+                                25,
+                                25
+                        )
+                        .build()
+        );
+
     }
 
     @Override
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(guiGraphics); // Отрисовка фона
-
-        // Отрисовка текстуры
-        guiGraphics.blit(
-                TEXTURE, // Ресурс текстуры
-                this.width / 2 - 80, // Позиция X (центр экрана)
-                this.height / 2 - 80, // Позиция Y (центр экрана)
-                0, // Смещение текстуры по X
-                0, // Смещение текстуры по Y
-                160, // Ширина текстуры
-                160 // Высота текстуры
-        );
 
         super.render(guiGraphics, mouseX, mouseY, partialTicks); // Вызов рендера родительского класса
     }
@@ -77,5 +78,9 @@ public class SkillTreeScreen extends Screen {
     @Override
     public boolean isPauseScreen() {
         return false; // Чтобы игра не ставилась на паузу при открытии GUI
+    }
+
+    public void onClose() {
+        super.onClose();
     }
 }
