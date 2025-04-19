@@ -2,6 +2,7 @@ package com.example.skilltreemod.gui;
 
 import com.example.skilltreemod.SkillTreeMod;
 import com.example.skilltreemod.client.OpenGuiPacket;
+import com.example.skilltreemod.gui.subscreens.InfoScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
@@ -11,13 +12,14 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 import org.jetbrains.annotations.NotNull;
 
+
 /**
  * Описывает вызываемый графический интерфейс дерева умений
  */
 public class SkillTreeScreen extends Screen {
 
     public SkillTreeScreen() {
-        super(Component.literal("My GUI"));
+        super(Component.literal("SkillTreeScreen"));
     }
 
     private static final String PROTOCOL_VERSION = "1";
@@ -30,54 +32,67 @@ public class SkillTreeScreen extends Screen {
 
     public static void register() {
         INSTANCE.registerMessage(
-                0, // ID пакета
-                OpenGuiPacket.class, // Класс пакета
-                OpenGuiPacket::encode, // Метод для кодирования пакета
-                OpenGuiPacket::new, // Конструктор для декодирования пакета
-                OpenGuiPacket::handle // Метод для обработки пакета
+                0,
+                OpenGuiPacket.class,
+                OpenGuiPacket::encode,
+                OpenGuiPacket::new,
+                OpenGuiPacket::handle
         );
     }
 
     @Override
     protected void init() {
-        // Инициализация кнопок и других элементов GUI
         this.addRenderableWidget(
                 Button.builder(Component.literal("X"), button -> {
                     onClose();
                 })
                         .bounds(
-                                this.width - 25, // Позиция X
-                                0, // Позиция Y
-                                25, // Ширина
-                                25 // Высота
+                                this.width - 30,
+                                3,
+                                25,
+                                25
                         )
-                        .build() // Создание кнопки
+                        .build()
         );
         this.addRenderableWidget(
                 Button.builder(Component.literal("?"), button -> {
-                    System.out.println("G");
+                    {
+                        this.minecraft.setScreen(new InfoScreen(this));
+                    }
                 })
                         .bounds(
-                                this.width - 65,
-                                0,
+                                this.width - 60,
+                                3,
                                 25,
                                 25
                         )
                         .build()
         );
 
+        this.addRenderableWidget(
+                Button.builder(Component.literal("≡"), button -> {
+
+                })
+                        .bounds(
+                                5,
+                                3,
+                                25,
+                                25
+                        )
+                        .build()
+        );
     }
 
     @Override
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(guiGraphics); // Отрисовка фона
 
-        super.render(guiGraphics, mouseX, mouseY, partialTicks); // Вызов рендера родительского класса
+        super.render(guiGraphics, mouseX, mouseY, partialTicks);
     }
 
     @Override
     public boolean isPauseScreen() {
-        return false; // Чтобы игра не ставилась на паузу при открытии GUI
+        return false;
     }
 
     public void onClose() {
