@@ -3,7 +3,6 @@ package com.example.skilltreemod.client;
 import com.example.skilltreemod.SkillTreeMod;
 import com.example.skilltreemod.gui.SkillTreeScreen;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

@@ -1,8 +1,10 @@
 package com.example.skilltreemod.gui;
 
+import com.example.skilltreemod.gui.buttons.CloseButton;
 import com.example.skilltreemod.SkillTreeMod;
 import com.example.skilltreemod.client.OpenGuiPacket;
-import com.example.skilltreemod.gui.subscreens.InfoScreen;
+import com.example.skilltreemod.gui.buttons.InfoButton;
+import com.example.skilltreemod.gui.buttons.SkillsButton;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
@@ -43,49 +45,19 @@ public class SkillTreeScreen extends Screen {
     @Override
     protected void init() {
         this.addRenderableWidget(
-                Button.builder(Component.literal("X"), button -> {
-                    onClose();
-                })
-                        .bounds(
-                                this.width - 30,
-                                3,
-                                25,
-                                25
-                        )
-                        .build()
+                CloseButton.createTopRight(this, 28, 3)
         );
         this.addRenderableWidget(
-                Button.builder(Component.literal("?"), button -> {
-                    {
-                        this.minecraft.setScreen(new InfoScreen(this));
-                    }
-                })
-                        .bounds(
-                                this.width - 60,
-                                3,
-                                25,
-                                25
-                        )
-                        .build()
+                InfoButton.createTopRight(this, 58, 3)
         );
 
         this.addRenderableWidget(
-                Button.builder(Component.literal("≡"), button -> {
-
-                })
-                        .bounds(
-                                5,
-                                3,
-                                25,
-                                25
-                        )
-                        .build()
-        );
+                SkillsButton.createMiddle(this));
     }
 
     @Override
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(guiGraphics); // Отрисовка фона
+        this.renderBackground(guiGraphics);
 
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
     }
