@@ -4,9 +4,9 @@ import com.example.skilltreemod.gui.buttons.CloseButton;
 import com.example.skilltreemod.SkillTreeMod;
 import com.example.skilltreemod.client.OpenGuiPacket;
 import com.example.skilltreemod.gui.buttons.InfoButton;
+import com.example.skilltreemod.gui.buttons.ProgressStatsButton;
 import com.example.skilltreemod.gui.buttons.SkillsButton;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -19,7 +19,6 @@ import org.jetbrains.annotations.NotNull;
  * Описывает вызываемый графический интерфейс дерева умений
  */
 public class SkillTreeScreen extends Screen {
-
     public SkillTreeScreen() {
         super(Component.literal("SkillTreeScreen"));
     }
@@ -53,6 +52,10 @@ public class SkillTreeScreen extends Screen {
 
         this.addRenderableWidget(
                 SkillsButton.createMiddle(this));
+
+        this.addRenderableWidget(
+                ProgressStatsButton.createDown(this));
+
     }
 
     @Override
@@ -60,6 +63,7 @@ public class SkillTreeScreen extends Screen {
         this.renderBackground(guiGraphics);
 
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
+
     }
 
     @Override
