@@ -6,6 +6,7 @@ import com.example.skilltreemod.client.OpenGuiPacket;
 import com.example.skilltreemod.gui.buttons.InfoButton;
 import com.example.skilltreemod.gui.buttons.ProgressStatsButton;
 import com.example.skilltreemod.gui.buttons.SkillsButton;
+import com.example.skilltreemod.gui.subscreens.SkillPointsScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -19,8 +20,10 @@ import org.jetbrains.annotations.NotNull;
  * Описывает вызываемый графический интерфейс дерева умений
  */
 public class SkillTreeScreen extends Screen {
+    private final SkillPointsScreen skillPointsScreen;
     public SkillTreeScreen() {
         super(Component.literal("SkillTreeScreen"));
+        this.skillPointsScreen = new SkillPointsScreen();
     }
 
     private static final String PROTOCOL_VERSION = "1";
@@ -62,6 +65,7 @@ public class SkillTreeScreen extends Screen {
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(guiGraphics);
 
+        skillPointsScreen.render(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
 
     }
