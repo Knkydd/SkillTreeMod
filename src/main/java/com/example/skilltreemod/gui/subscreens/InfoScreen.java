@@ -1,20 +1,19 @@
 package com.example.skilltreemod.gui.subscreens;
 
-import com.example.skilltreemod.gui.SkillTreeScreen;
+import com.example.skilltreemod.gui.buttons.CloseButton;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 
 public class InfoScreen extends Screen {
     private final Screen parentScreen;
-    private int windowWidth = 150;
-    private int windowHeight = 200;
+    private int windowWidth = 200;
+    private int windowHeight = 250;
     private int leftPos;
     private int topPos;
 
-    public InfoScreen(SkillTreeScreen parentScreen) {
+    public InfoScreen(Screen parentScreen) {
         super(Component.literal("Информация"));
         this.parentScreen = parentScreen;
     }
@@ -26,13 +25,8 @@ public class InfoScreen extends Screen {
         this.leftPos = (this.width - windowWidth) / 2;
         this.topPos = (this.height - windowHeight) / 2;
 
-        // Кнопка-крестик в правом верхнем углу
-        this.addRenderableWidget(Button.builder(
-                Component.literal("X"),
-                button -> this.onClose()
-        )
-                .bounds(leftPos + windowWidth - 20, topPos + 5, 15, 15)
-                .build());
+        this.addRenderableWidget(
+                CloseButton.createTopRight(this, leftPos + 30, topPos + 5));
     }
 
     @Override

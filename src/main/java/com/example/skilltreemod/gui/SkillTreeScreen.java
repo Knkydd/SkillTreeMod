@@ -1,10 +1,13 @@
 package com.example.skilltreemod.gui;
 
+import com.example.skilltreemod.gui.buttons.CloseButton;
 import com.example.skilltreemod.SkillTreeMod;
 import com.example.skilltreemod.client.OpenGuiPacket;
-import com.example.skilltreemod.gui.subscreens.InfoScreen;
+import com.example.skilltreemod.gui.buttons.InfoButton;
+import com.example.skilltreemod.gui.buttons.ProgressStatsButton;
+import com.example.skilltreemod.gui.buttons.SkillsButton;
+import com.example.skilltreemod.gui.subscreens.SkillPointsScreen;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -17,9 +20,10 @@ import org.jetbrains.annotations.NotNull;
  * Описывает вызываемый графический интерфейс дерева умений
  */
 public class SkillTreeScreen extends Screen {
-
+    private final SkillPointsScreen skillPointsScreen;
     public SkillTreeScreen() {
         super(Component.literal("SkillTreeScreen"));
+        this.skillPointsScreen = new SkillPointsScreen();
     }
 
     private static final String PROTOCOL_VERSION = "1";
@@ -43,51 +47,27 @@ public class SkillTreeScreen extends Screen {
     @Override
     protected void init() {
         this.addRenderableWidget(
-                Button.builder(Component.literal("X"), button -> {
-                    onClose();
-                })
-                        .bounds(
-                                this.width - 30,
-                                3,
-                                25,
-                                25
-                        )
-                        .build()
+                CloseButton.createTopRight(this, 28, 3)
         );
         this.addRenderableWidget(
-                Button.builder(Component.literal("?"), button -> {
-                    {
-                        this.minecraft.setScreen(new InfoScreen(this));
-                    }
-                })
-                        .bounds(
-                                this.width - 60,
-                                3,
-                                25,
-                                25
-                        )
-                        .build()
+                InfoButton.createTopRight(this, 58, 3)
         );
 
         this.addRenderableWidget(
-                Button.builder(Component.literal("≡"), button -> {
+                SkillsButton.createMiddle(this));
 
-                })
-                        .bounds(
-                                5,
-                                3,
-                                25,
-                                25
-                        )
-                        .build()
-        );
+        this.addRenderableWidget(
+                ProgressStatsButton.createDown(this));
+
     }
 
     @Override
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(guiGraphics); // Отрисовка фона
+        this.renderBackground(guiGraphics);
 
+        skillPointsScreen.render(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
+
     }
 
     @Override
