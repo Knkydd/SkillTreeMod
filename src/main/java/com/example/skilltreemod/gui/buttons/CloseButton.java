@@ -10,8 +10,8 @@ public class CloseButton extends Button {
         super(
                 x,
                 y,
-                25,
-                25,
+                20,
+                20,
                 Component.literal("×"),
                 button -> {
                     screen.onClose();

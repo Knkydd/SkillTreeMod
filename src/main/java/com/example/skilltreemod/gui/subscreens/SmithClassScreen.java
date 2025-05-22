@@ -6,23 +6,59 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
 public class SmithClassScreen extends ClassesScreen {
+    private int availablePoints = 3;
     public SmithClassScreen(Screen parentScreen) {
         super(parentScreen);
     }
 
-    @Override
-    public void init() {
-        super.init();
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
+
+        renderTitle(guiGraphics);
+
+        renderContentArea(guiGraphics);
     }
 
-    @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        guiGraphics.drawCenteredString(this.font, this.title,
-                leftPos + windowWidth / 2, topPos + 10, 0xFFFFFF);
+    private void renderTitle(GuiGraphics guiGraphics) {
+        Component title = Component.literal("Кузнец").withStyle(ChatFormatting.BOLD);
+        int titleX = leftPos + (windowWidth - font.width(title)) / 2;
+        int titleY = topPos + 15;
 
-        guiGraphics.drawCenteredString(this.font,
-                Component.literal("Кузнец").withStyle(ChatFormatting.WHITE),
-                leftPos + windowWidth / 2, topPos + windowHeight / 2 - 10, 0xFFFFFF);
-        super.render(guiGraphics, mouseX, mouseY, partialTicks);
+        guiGraphics.drawString(font, title, titleX, titleY, TITLE_COLOR, false);
+    }
+    private void renderContentArea(GuiGraphics guiGraphics) {
+        int contentLeft = leftPos + 10;
+        int contentTop = topPos + 40;
+        int contentWidth = windowWidth - 20;
+        int contentHeight = windowHeight - 50;
+
+        guiGraphics.fill(contentLeft, contentTop, contentLeft + contentWidth, contentTop + contentHeight, CONTENT_COLOR);
+
+        guiGraphics.hLine(contentLeft, contentLeft + contentWidth, contentTop + 30, BORDER_COLOR);
+
+        Component pointsText = Component.literal("Доступно очков: " + availablePoints)
+                .withStyle(ChatFormatting.BOLD);
+
+        int pointsX = leftPos + (windowWidth - font.width(pointsText)) / 2;
+        int pointsY = contentTop + 35;
+
+        guiGraphics.drawString(
+                font,
+                pointsText,
+                pointsX,
+                pointsY,
+                0xffffff,
+                false
+        );
+
+        int skillsAreaTop = contentTop + 55;
+        guiGraphics.fill(
+                contentLeft,
+                skillsAreaTop,
+                contentLeft + contentWidth,
+                contentTop + contentHeight,
+                0xFF0F0F0F
+        );
     }
 }
