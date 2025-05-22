@@ -1,12 +1,12 @@
 package com.example.skilltreemod.gui.other;
 
-import com.example.skilltreemod.gui.subscreens.ArcherClassScreen;
+import com.example.skilltreemod.gui.subscreens.TankClassScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 
-public class ArcherProgressContainer extends ProgressContainer{
-    public ArcherProgressContainer(int x, int y, int width, int height, Screen parentScreen){
+public class TankContainer extends ClassContainer {
+    public TankContainer(int x, int y, int width, int height, Screen parentScreen){
         super(x,y,width,height,parentScreen);
     }
 
@@ -29,6 +29,6 @@ public class ArcherProgressContainer extends ProgressContainer{
 
     @Override
     public void onClick(double mouseX, double mouseY) {
-        Minecraft.getInstance().setScreen(new ArcherClassScreen(parentScreen));
+        Minecraft.getInstance().setScreen(new TankClassScreen(parentScreen));
     }
 }

@@ -48,19 +48,19 @@ public class SkillTreeScreen extends Screen {
 //                InfoButton.createInfoButton(this, 58, 3)
 //        );
 
-        WarriorProgressContainer warriorContainer = new WarriorProgressContainer(
+        WarriorContainer warriorContainer = new WarriorContainer(
                 0,
                 0,
                 width / 7, height,
                 this
         );
 
-        DiggerProgressContainer diggerContainer = new DiggerProgressContainer(width / 7, 0, width / 7, height, this);
-        ArcherProgressContainer archerContainer = new ArcherProgressContainer(2 * width / 7, 0, width / 7, height, this);
-        FisherProgressContainer fisherContainer = new FisherProgressContainer(3 * width / 7, 0, width / 7, height, this);
-        LibrarianProgressContainer librarianContainer = new LibrarianProgressContainer(4 * width / 7, 0, width / 7, height, this);
-        SmithProgressContainer smithContainer = new SmithProgressContainer(5 * width / 7, 0, width / 7, height, this);
-        TankProgressContainer tankContainer = new TankProgressContainer(6 * width / 7, 0, width / 7, height, this);
+        DiggerContainer diggerContainer = new DiggerContainer(width / 7, 0, width / 7, height, this);
+        ArcherContainer archerContainer = new ArcherContainer(2 * width / 7, 0, width / 7, height, this);
+        FisherContainer fisherContainer = new FisherContainer(3 * width / 7, 0, width / 7, height, this);
+        LibrarianContainer librarianContainer = new LibrarianContainer(4 * width / 7, 0, width / 7, height, this);
+        SmithContainer smithContainer = new SmithContainer(5 * width / 7, 0, width / 7, height, this);
+        TankContainer tankContainer = new TankContainer(6 * width / 7, 0, width / 7, height, this);
 
         this.addRenderableWidget(warriorContainer);
         this.addRenderableWidget(diggerContainer);

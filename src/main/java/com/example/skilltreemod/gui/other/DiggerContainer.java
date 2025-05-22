@@ -1,12 +1,12 @@
 package com.example.skilltreemod.gui.other;
 
-import com.example.skilltreemod.gui.subscreens.SmithClassScreen;
+import com.example.skilltreemod.gui.subscreens.DiggerClassScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 
-public class SmithProgressContainer extends ProgressContainer{
-    public SmithProgressContainer(int x, int y, int width, int height, Screen parentScreen){
+public class DiggerContainer extends ClassContainer {
+    public DiggerContainer(int x, int y, int width, int height, Screen parentScreen){
         super(x,y,width,height,parentScreen);
     }
 
@@ -29,6 +29,6 @@ public class SmithProgressContainer extends ProgressContainer{
 
     @Override
     public void onClick(double mouseX, double mouseY) {
-        Minecraft.getInstance().setScreen(new SmithClassScreen(parentScreen));
+        Minecraft.getInstance().setScreen(new DiggerClassScreen(parentScreen));
     }
 }

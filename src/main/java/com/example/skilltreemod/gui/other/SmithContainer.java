@@ -1,12 +1,12 @@
 package com.example.skilltreemod.gui.other;
 
-import com.example.skilltreemod.gui.subscreens.FisherClassScreen;
+import com.example.skilltreemod.gui.subscreens.SmithClassScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 
-public class FisherProgressContainer extends ProgressContainer{
-    public FisherProgressContainer(int x, int y, int width, int height, Screen parentScreen){
+public class SmithContainer extends ClassContainer {
+    public SmithContainer(int x, int y, int width, int height, Screen parentScreen){
         super(x,y,width,height,parentScreen);
     }
 
@@ -29,6 +29,6 @@ public class FisherProgressContainer extends ProgressContainer{
 
     @Override
     public void onClick(double mouseX, double mouseY) {
-        Minecraft.getInstance().setScreen(new FisherClassScreen(parentScreen));
+        Minecraft.getInstance().setScreen(new SmithClassScreen(parentScreen));
     }
 }

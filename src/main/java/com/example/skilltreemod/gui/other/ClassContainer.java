@@ -6,13 +6,13 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
-public class ProgressContainer extends AbstractWidget {
+public class ClassContainer extends AbstractWidget {
     private float progress;
     protected Screen parentScreen;
     private int progressColor = 0xFF00FF00;
     //private final ResourceLocation texture = new ResourceLocation("skilltreemod", "textures/gui/background.png");
 
-    public ProgressContainer(int x, int y, int width, int height, Screen parentScreen) {
+    public ClassContainer(int x, int y, int width, int height, Screen parentScreen) {
         super(x, y, width, height, Component.empty());
         this.progress = 0.0f;
         this.parentScreen = parentScreen;
