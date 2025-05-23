@@ -6,15 +6,15 @@ import net.minecraft.network.chat.Component;
 
 public class CloseButton extends Button {
 
-    public CloseButton(Screen parentScreen, int x, int y) {
+    public CloseButton(Screen screen, int x, int y) {
         super(
                 x,
                 y,
-                25,
-                25,
+                20,
+                20,
                 Component.literal("×"),
                 button -> {
-                    parentScreen.onClose();
+                    screen.onClose();
                 },
                 Button.DEFAULT_NARRATION
         );

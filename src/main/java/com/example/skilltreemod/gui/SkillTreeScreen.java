@@ -1,12 +1,8 @@
 package com.example.skilltreemod.gui;
 
-import com.example.skilltreemod.gui.buttons.CloseButton;
 import com.example.skilltreemod.SkillTreeMod;
 import com.example.skilltreemod.client.OpenGuiPacket;
-import com.example.skilltreemod.gui.buttons.InfoButton;
-import com.example.skilltreemod.gui.buttons.ProgressStatsButton;
-import com.example.skilltreemod.gui.buttons.SkillsButton;
-import com.example.skilltreemod.gui.subscreens.SkillPointsScreen;
+import com.example.skilltreemod.gui.other.*;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -20,10 +16,9 @@ import org.jetbrains.annotations.NotNull;
  * Описывает вызываемый графический интерфейс дерева умений
  */
 public class SkillTreeScreen extends Screen {
-    private final SkillPointsScreen skillPointsScreen;
+
     public SkillTreeScreen() {
         super(Component.literal("SkillTreeScreen"));
-        this.skillPointsScreen = new SkillPointsScreen();
     }
 
     private static final String PROTOCOL_VERSION = "1";
@@ -46,18 +41,34 @@ public class SkillTreeScreen extends Screen {
 
     @Override
     protected void init() {
-        this.addRenderableWidget(
-                CloseButton.createTopRight(this, 28, 3)
-        );
-        this.addRenderableWidget(
-                InfoButton.createTopRight(this, 58, 3)
+//        this.addRenderableWidget(
+//                CloseButton.createTopRight(this, 28, 3)
+//        );
+//        this.addRenderableWidget(
+//                InfoButton.createInfoButton(this, 58, 3)
+//        );
+
+        WarriorContainer warriorContainer = new WarriorContainer(
+                0,
+                0,
+                width / 7, height,
+                this
         );
 
-        this.addRenderableWidget(
-                SkillsButton.createMiddle(this));
+        DiggerContainer diggerContainer = new DiggerContainer(width / 7, 0, width / 7, height, this);
+        ArcherContainer archerContainer = new ArcherContainer(2 * width / 7, 0, width / 7, height, this);
+        FisherContainer fisherContainer = new FisherContainer(3 * width / 7, 0, width / 7, height, this);
+        LibrarianContainer librarianContainer = new LibrarianContainer(4 * width / 7, 0, width / 7, height, this);
+        SmithContainer smithContainer = new SmithContainer(5 * width / 7, 0, width / 7, height, this);
+        TankContainer tankContainer = new TankContainer(6 * width / 7, 0, width / 7, height, this);
 
-        this.addRenderableWidget(
-                ProgressStatsButton.createDown(this));
+        this.addRenderableWidget(warriorContainer);
+        this.addRenderableWidget(diggerContainer);
+        this.addRenderableWidget(archerContainer);
+        this.addRenderableWidget(fisherContainer);
+        this.addRenderableWidget(librarianContainer);
+        this.addRenderableWidget(smithContainer);
+        this.addRenderableWidget(tankContainer);
 
     }
 
@@ -65,7 +76,6 @@ public class SkillTreeScreen extends Screen {
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(guiGraphics);
 
-        skillPointsScreen.render(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
 
     }

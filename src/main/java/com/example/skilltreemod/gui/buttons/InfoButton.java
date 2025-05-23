@@ -7,7 +7,7 @@ import net.minecraft.network.chat.Component;
 
 public class InfoButton extends Button {
 
-    public InfoButton(Screen parentScreen, int x, int y) {
+    public InfoButton(Screen screen, int x, int y) {
         super(
                 x,
                 y,
@@ -15,13 +15,13 @@ public class InfoButton extends Button {
                 25,
                 Component.literal("?"),
                 button -> {
-                    parentScreen.getMinecraft().setScreen(new InfoScreen(parentScreen));
+                    screen.getMinecraft().setScreen(new InfoScreen(screen));
                 },
                 Button.DEFAULT_NARRATION
         );
     }
 
-    public static InfoButton createTopRight(Screen screen, int rightOffset, int topOffset) {
+    public static InfoButton createInfoButton(Screen screen, int rightOffset, int topOffset) {
         int x = screen.width - rightOffset;
         int y = topOffset;
         return new InfoButton(screen, x, y);
